@@ -1,0 +1,22 @@
+tenant: gillkyle 
+app: jazz 
+service: jazz
+
+frameworkVersion: ">=1.44.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  postApplication:
+    handler: handler.postApplication
+    environment: 
+      GATSBY_JAZZHR_KEY: ${env:GATSBY_JAZZHR_KEY}
+      SENDGRID_API_KEY: ${env:SENDGRID_API_KEY}
+    
+    events:
+      - http:
+          path: postApplication
+          method: post
+          cors: true
